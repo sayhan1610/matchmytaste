@@ -4,7 +4,7 @@ import datetime
 
 # Replace with your own Spotify API credentials
 SPOTIPY_CLIENT_ID = 'e1212180fa8d43bdac68a2e39697350b'
-SPOTIPY_CLIENT_SECRET = 'secret'
+SPOTIPY_CLIENT_SECRET = 'secret' #hidden for security reasons
 
 # Set up Spotify API client
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=SPOTIPY_CLIENT_ID, client_secret=SPOTIPY_CLIENT_SECRET))

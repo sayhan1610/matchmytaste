@@ -38,3 +38,12 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
+    
+# Example output:
+# Top 5 songs released on June 26:
+# 1. HELE by 8RO8, OMGKENNY, P-Lo, YOREN! (Popularity: 42)
+# 2. Release Yourself by BYØRN (Popularity: 41)
+# 3. Release Me - CID Remix by Mark Knight, Armand Van Helden, CID (Popularity: 38)
+# 4. Release by AVAO, Bobby Neon (Popularity: 38)
+# 5. release by Maybe Roxanne (Popularity: 33)

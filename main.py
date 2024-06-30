@@ -20,12 +20,12 @@ class SearchInput(BaseModel):
 
 class Artist(BaseModel):
     name: str
-    uri: str
+    url: str
 
 class Track(BaseModel):
     name: str
     artists: str
-    uri: str
+    url: str
 
 @app.post("/search_artist", response_model=list[Artist])
 def search_artist(search_input: SearchInput):
@@ -35,7 +35,7 @@ def search_artist(search_input: SearchInput):
     if artists:
         artist_id = artists[0]['id']
         related_artists = sp.artist_related_artists(artist_id)['artists']
-        return [{'name': artist['name'], 'uri': artist['external_urls']['spotify']} for artist in related_artists]
+        return [{'name': artist['name'], 'url': artist['external_urls']['spotify']} for artist in related_artists]
     else:
         raise HTTPException(status_code=404, detail=f"No artists found for '{search_input.query}'.")
 
@@ -47,7 +47,7 @@ def search_track(search_input: SearchInput):
     if tracks:
         track_id = tracks[0]['id']
         recommended_tracks = sp.recommendations(seed_tracks=[track_id], limit=10)['tracks']
-        return [{'name': track['name'], 'artists': ', '.join([artist['name'] for artist in track['artists']]), 'uri': track['external_urls']['spotify']} for track in recommended_tracks]
+        return [{'name': track['name'], 'artists': ', '.join([artist['name'] for artist in track['artists']]), 'url': track['external_urls']['spotify']} for track in recommended_tracks]
     else:
         raise HTTPException(status_code=404, detail=f"No tracks found for '{search_input.query}'.")
 
@@ -69,5 +69,5 @@ def top_tracks_of_month():
     # Fetch top tracks of the month
     results = sp.search(q=f'year:{year} month:{month}', type='track', limit=10)
     top_tracks = results['tracks']['items']
-    return [{'name': track['name'], 'artists': ', '.join([artist['name'] for artist in track['artists']]), 'uri': track['external_urls']['spotify']} for track in top_tracks]
+    return [{'name': track['name'], 'artists': ', '.join([artist['name'] for artist in track['artists']]), 'url': track['external_urls']['spotify']} for track in top_tracks]
 

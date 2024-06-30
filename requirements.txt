@@ -1,1 +1,5 @@
 spotipy
+fastapi
+uvicorn
+requests
+pydantic

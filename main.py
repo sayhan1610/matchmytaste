@@ -8,10 +8,11 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+id = os.environ['spoti_id']
 token = os.environ['spoti_token']
 
 # Spotify credentials
-SPOTIPY_CLIENT_ID = 'e1212180fa8d43bdac68a2e39697350b'
+SPOTIPY_CLIENT_ID = id
 SPOTIPY_CLIENT_SECRET = token
 
 

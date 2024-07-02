@@ -12,8 +12,8 @@ load_dotenv()
 app = FastAPI()
 
 # Spotify credentials
-SPOTIPY_CLIENT_ID = os.getenv('spoti_id')
-SPOTIPY_CLIENT_SECRET = os.getenv('spoti_token')
+SPOTIPY_CLIENT_ID = "e1212180fa8d43bdac68a2e39697350b"
+SPOTIPY_CLIENT_SECRET = "e4f7d7afa4904e08bec44c6d203181a5"
 
 # Authenticate with Spotify
 auth_manager = SpotifyClientCredentials(client_id=SPOTIPY_CLIENT_ID, client_secret=SPOTIPY_CLIENT_SECRET)

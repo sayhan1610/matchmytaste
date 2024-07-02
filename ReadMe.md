@@ -1,12 +1,12 @@
-# SongThisDay API
+# MatchMyTaste API
 
 ## Overview
 
-SongThisDay API is a web service built with FastAPI to retrieve information about music artists and tracks. It interacts with the Spotify API to search for similar artists, similar tracks, and fetch the top tracks of the month based on user queries.
+MatchMyTaste API is a web service built with FastAPI to retrieve information about music artists and tracks. It interacts with the Spotify API to search for similar artists, similar tracks, and fetch the top tracks of the month based on user queries.
 
 ## Accessing the API
 
-You can use the SongThisDay API in two ways: directly from the provided URL or by setting it up locally.
+You can use the MatchMyTaste API in two ways: directly from the provided URL or by setting it up locally.
 
 ### 1. Use the Existing API
 
@@ -83,8 +83,8 @@ Follow these steps to set up and run the API on your local machine.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/songthisday-api.git
-   cd songthisday-api
+   git clone https://github.com/yourusername/MatchMyTaste-api.git
+   cd MatchMyTaste-api
    ```
 
 2. Install dependencies from `requirements.txt`:

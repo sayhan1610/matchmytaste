@@ -1,47 +1,41 @@
-# SongThisDay
+# SongThisDay API
 
-SongThisDay is a simple Python script that finds the current date and prints the top 5 songs released on that date, sorted by the number of streams on Spotify.
+## Overview
 
-## Features
+SongThisDay API is a web service built with FastAPI to retrieve information about music artists and tracks. It interacts with the Spotify API to search for similar artists, similar tracks, and fetch the top tracks of the month based on user queries.
 
-- Fetches songs released on the current date (month and day).
-- Sorts songs by popularity (number of streams).
-- Prints the top 5 songs along with their artist names and popularity.
+## Endpoints
 
-## Requirements
+### Search for Similar Artists
 
-- Python 3.6+
-- `spotipy` library
+- **Endpoint**: `/search_artist`
+- **Method**: POST
+- **Description**: Returns a list of similar artists based on the provided artist name or query.
+- **Input**: JSON body `{ "query": "artist_name" }`
+- **Output**: List of artists with their names and Spotify URLs.
 
-## Installation
+### Search for Similar Tracks
 
-1. Clone the repository:
+- **Endpoint**: `/search_track`
+- **Method**: POST
+- **Description**: Returns a list of similar tracks based on the provided track name or query.
+- **Input**: JSON body `{ "query": "track_name" }`
+- **Output**: List of tracks with their names, artists, and Spotify URLs.
 
+### Fetch Top Tracks of the Month
+
+- **Endpoint**: `/top_tracks_of_month`
+- **Method**: GET
+- **Description**: Fetches the top tracks of the current month based on Spotify's popularity metrics.
+- **Output**: List of tracks with their names, artists, and Spotify URLs.
+
+## Getting Started
+
+1. Clone the repository.
+2. Install dependencies from `requirements.txt`.
    ```bash
-   git clone https://github.com/yourusername/songthisday.git
-   cd songthisday
+   pip install -r requirements.txt
    ```
-
-2. Install the required Python packages:
-
-   ```bash
-   pip install spotipy
-   ```
-
-3. Set up your Spotify API credentials:
-
-   - Create a Spotify Developer account and get your Client ID and Client Secret from the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/applications).
-
-4. Replace the placeholder credentials in the script with your own:
-   ```python
-   SPOTIPY_CLIENT_ID = 'YOUR_CLIENT_ID'
-   SPOTIPY_CLIENT_SECRET = 'YOUR_CLIENT_SECRET'
-   ```
-
-## Usage
-
-Run the script:
-
-```bash
-python songthisday.py
-```
+3. Set up your Spotify API credentials in the environment variables (SPOTIPY_CLIENT_ID and SPOTIPY_CLIENT_SECRET).
+4. Run the FastAPI application using Uvicorn.
+   uvicorn main:app --reload

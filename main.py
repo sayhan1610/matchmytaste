@@ -4,9 +4,16 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import datetime
 
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+token = os.environ['spoti_token']
+
 # Spotify credentials
 SPOTIPY_CLIENT_ID = 'e1212180fa8d43bdac68a2e39697350b'
-SPOTIPY_CLIENT_SECRET = 'ajifbfao'
+SPOTIPY_CLIENT_SECRET = token
+
 
 # Initialize FastAPI app
 app = FastAPI()
@@ -29,15 +36,30 @@ class Track(BaseModel):
 
 @app.post("/search_artist", response_model=list[Artist])
 def search_artist(search_input: SearchInput):
-    # Search for similar artists
-    results = sp.search(q=search_input.query, type='artist', limit=1)
+    # Search for artists based on query
+    results = sp.search(q=search_input.query, type='artist', limit=50)  # Increased limit to 50
     artists = results['artists']['items']
+    
     if artists:
-        artist_id = artists[0]['id']
-        related_artists = sp.artist_related_artists(artist_id)['artists']
-        return [{'name': artist['name'], 'url': artist['external_urls']['spotify']} for artist in related_artists]
+        related_artists_list = []
+        
+        # Iterate over each artist found
+        for artist in artists:
+            artist_id = artist['id']
+            related_artists = sp.artist_related_artists(artist_id)['artists']
+            
+            # Append related artists to the list
+            for related_artist in related_artists:
+                related_artists_list.append({
+                    'name': related_artist['name'],
+                    'url': related_artist['external_urls']['spotify']
+                })
+        
+        return related_artists_list
+    
     else:
         raise HTTPException(status_code=404, detail=f"No artists found for '{search_input.query}'.")
+
 
 @app.post("/search_track", response_model=list[Track])
 def search_track(search_input: SearchInput):
@@ -46,7 +68,7 @@ def search_track(search_input: SearchInput):
     tracks = results['tracks']['items']
     if tracks:
         track_id = tracks[0]['id']
-        recommended_tracks = sp.recommendations(seed_tracks=[track_id], limit=10)['tracks']
+        recommended_tracks = sp.recommendations(seed_tracks=[track_id], limit=50)['tracks']
         return [{'name': track['name'], 'artists': ', '.join([artist['name'] for artist in track['artists']]), 'url': track['external_urls']['spotify']} for track in recommended_tracks]
     else:
         raise HTTPException(status_code=404, detail=f"No tracks found for '{search_input.query}'.")
@@ -67,7 +89,7 @@ def top_tracks_of_month():
     end_date = last_day.strftime('%Y-%m-%d')
 
     # Fetch top tracks of the month
-    results = sp.search(q=f'year:{year} month:{month}', type='track', limit=10)
+    results = sp.search(q=f'year:{year} month:{month}', type='track', limit=50)
     top_tracks = results['tracks']['items']
     return [{'name': track['name'], 'artists': ', '.join([artist['name'] for artist in track['artists']]), 'url': track['external_urls']['spotify']} for track in top_tracks]
 

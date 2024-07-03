@@ -1,7 +1,7 @@
 import requests
 
 # Base URL of the FastAPI application
-base_url = 'http://localhost:8000'
+base_url = 'https://matchmytaste.onrender.com'
 
 # Function to search for similar artists
 def search_artist(query):

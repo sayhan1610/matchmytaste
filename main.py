@@ -33,27 +33,13 @@ class Track(BaseModel):
 
 @app.post("/search_artist", response_model=list[Artist])
 def search_artist(search_input: SearchInput):
-    # Search for artists based on query
-    results = sp.search(q=search_input.query, type='artist', limit=50)  # Increased limit to 50
+    # Search for the initial artist
+    results = sp.search(q=search_input.query, type='artist', limit=1)
     artists = results['artists']['items']
-    
     if artists:
-        related_artists_list = []
-        
-        # Iterate over each artist found
-        for artist in artists:
-            artist_id = artist['id']
-            related_artists = sp.artist_related_artists(artist_id)['artists']
-            
-            # Append related artists to the list
-            for related_artist in related_artists:
-                related_artists_list.append({
-                    'name': related_artist['name'],
-                    'url': related_artist['external_urls']['spotify']
-                })
-        
-        return related_artists_list
-    
+        artist_id = artists[0]['id']
+        related_artists = sp.artist_related_artists(artist_id)['artists'][:20]  # Limit to 20 related artists
+        return [{'name': artist['name'], 'url': artist['external_urls']['spotify']} for artist in related_artists]
     else:
         raise HTTPException(status_code=404, detail=f"No artists found for '{search_input.query}'.")
 

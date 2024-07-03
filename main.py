@@ -67,7 +67,7 @@ def top_tracks_of_month():
     top_tracks = results['tracks']['items']
     return [{'name': track['name'], 'artists': ', '.join([artist['name'] for artist in track['artists']]), 'url': track['external_urls']['spotify']} for track in top_tracks]
 
-@app.get("/ping")
+@app.get("/")
 def ping():
     return "pong"
 

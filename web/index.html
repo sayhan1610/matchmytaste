@@ -9,18 +9,13 @@
   <body>
     <div class="container">
       <h1>Music Search</h1>
-      <div class="search-container">
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="Enter artist or track name..."
-        />
-        <select id="searchType">
-          <option value="artist">Search Artists</option>
-          <option value="track">Search Tracks</option>
-          <option value="top_tracks">Top Tracks of the Month</option>
-        </select>
-        <button onclick="search()">Search</button>
+      <div class="buttons-container">
+        <button onclick="showArtistSearch()">Search Similar Artists</button>
+        <button onclick="showTrackSearch()">Search Similar Tracks</button>
+        <button onclick="showTopTracks()">Top Tracks of the Month</button>
+      </div>
+      <div id="searchInputs" class="search-container">
+        <!-- Input fields will be dynamically added here -->
       </div>
       <div id="resultsContainer"></div>
     </div>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Match My Taste</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      #results {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Match My Taste</h1>
+    <form action="http://localhost:3000/search" method="post">
+      <input type="hidden" name="type" value="artist" />
+      <input type="text" name="query" placeholder="Enter artist name" />
+      <button type="submit">Search Artist</button>
+    </form>
+    <form action="http://localhost:3000/search" method="post">
+      <input type="hidden" name="type" value="track" />
+      <input type="text" name="query" placeholder="Enter track name" />
+      <button type="submit">Search Track</button>
+    </form>
+    <div id="results"></div>
+  </body>
+</html>

@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -10,6 +11,15 @@ load_dotenv()
 
 # Initialize FastAPI app
 app = FastAPI()
+
+# CORS (Cross-Origin Resource Sharing) middleware configuration
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins, modify this based on your requirements
+    allow_credentials=True,
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
+)
 
 # Spotify credentials
 SPOTIPY_CLIENT_ID = os.getenv('spoti_id')

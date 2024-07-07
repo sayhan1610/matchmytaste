@@ -31,13 +31,29 @@ body {
   }
   
   .search-container input[type="text"] {
-    padding: 10px;
-    width: 60%;
-    max-width: 300px;
-    border: 1px solid #191815;
-    background-color: #282828;
-    color: #ffffff;
+    background-color: #282828; /* Updated background color */
+    border: 1px solid #191815; /* Updated border */
+    padding: 5px; /* Adjusted padding */
+    color: #ffffff; /* Text color */
+    max-width: 300px; /* Maximum width */
+    width: 30%; /* Adjusted width */
+    margin: 0; /* No margin */
+    outline: 2px solid #383838; /* Outline color */
+    height: 15px; /* Adjusted height */
+    font-size: 16px; /* Adjusted font size */
+    text-align: center; /* Text alignment */
+    transition: all 1s; /* Transition effect */
+    font-weight: bold; /* Font weight */
+    font-family: 'Courier New', Courier, monospace; /* Font family */
   }
+  
+  .search-container input[type="text"]:hover,
+  .search-container input[type="text"]:focus {
+    background-color: #747474; /* Hover and focus background color */
+    border-top-width: 0.2em; /* Adjusted border top width */
+  }
+  
+  
   
   .search-container button {
     padding: 10px 20px;

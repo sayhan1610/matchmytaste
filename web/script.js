@@ -111,10 +111,16 @@ function showArtistSearch() {
     card.innerHTML = `
       <h3>${name}</h3>
       <p>${subtitle}</p>
-      <a href="${url}" target="_blank">Listen on Spotify</a>
+      <button class="spotify-button" onclick="window.open('${url}', '_blank')">
+        <img src="https://static-00.iconduck.com/assets.00/spotify-icon-2048x2048-n3imyp8e.png" alt="Spotify Icon">
+        Listen on Spotify
+      </button>
     `;
     return card;
   }
+  
+  
+  
   
   function clearResults() {
     const resultsContainer = document.getElementById('resultsContainer');

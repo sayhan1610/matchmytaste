@@ -270,6 +270,8 @@ body {
 
 
 .card {
+  display: flex;
+  flex-direction: column;
   width: 190px;
   height: auto; /* Adjusted height */
   background-color: #191815;
@@ -282,14 +284,13 @@ body {
 }
 
 .card h3 {
-  margin-bottom: auto;
   color: #ffffff; /* Adjust text color as needed */
 }
 
 .card p {
   font-size: 14px;
   color: #888888;
-  margin-bottom: 20px;
+margin-top: auto;
 }
 
 
@@ -434,10 +435,22 @@ body {
 .background {
   width: 100%;
   height: 100%;
-  /* Add your background pattern here */
   background-image: radial-gradient( #111812 85%, #173d49 90%,#0d1725 20%);
   background-size: 50px 50px;
+  animation: moveDiagonally 5s linear infinite;
 }
+
+@keyframes moveDiagonally {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100px 100px;
+    
+  }
+}
+
+
 .container {
   width: 100%;
   height: 100%;
@@ -445,7 +458,6 @@ body {
   --c1: #282828;
   --c2: #1e1e1e;
   --c3: #111812;
-
   --_g: 0 120deg, #0000 0;
   background: conic-gradient(
       from 0deg at calc(500% / 6) calc(100% / 3),
@@ -480,7 +492,18 @@ body {
       var(--c3) 0
     );
   background-size: calc(var(--s) * 1.732) var(--s);
+  animation: moveDown 100s linear infinite;
 }
+
+@keyframes moveDown {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
 /* CSS style to hide cursor element */
 .newClass {
   cursor: none;
@@ -488,6 +511,7 @@ body {
 
 
 .spotify-button {
+  margin-top: 15px;
   position: relative;
   text-decoration: none;
   border: none;
@@ -495,7 +519,7 @@ body {
   font-family: inherit;
   cursor: pointer;
   color: #fff;
-  width: auto; /* Adjust width as needed */
+  width: 100%; /* Adjust width as needed */
   height: auto;
   line-height: 2em;
   text-align: center;

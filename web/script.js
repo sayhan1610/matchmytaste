@@ -127,6 +127,7 @@ function showArtistSearch() {
 document.addEventListener("DOMContentLoaded", function() {
 
   let quantumTimeout; // Variable to store timeout ID
+  let cursorVisible = true; // Flag to track cursor visibility
 
   // Add event listener for mousemove to track pointer movement
   document.addEventListener("mousemove", function(event) {
@@ -141,10 +142,18 @@ document.addEventListener("DOMContentLoaded", function() {
     quantumTimeout = setTimeout(function() {
       const quantum = createQuantumElement(event.clientX, event.clientY);
       document.body.appendChild(quantum);
-
-      // Call your GFG_Fun function here after the timeout
-      GFG_Fun();
+      cursorVisible = false; // Set flag to indicate cursor should be hidden
+      document.body.style.cursor = "none"; // Hide cursor
     }, 5000);
+  });
+
+  // Add event listener to restore cursor visibility on mousemove
+  document.addEventListener("mousemove", function() {
+    if (!cursorVisible) {
+      cursorVisible = true; // Reset flag
+      document.body.style.cursor = "auto"; // Show cursor
+      removeQuantumElement(); // Remove quantum element if it exists
+    }
   });
 
   // Function to create the quantum element at the specified coordinates

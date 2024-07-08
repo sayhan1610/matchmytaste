@@ -123,3 +123,57 @@ function showArtistSearch() {
     searchInputs.innerHTML = '';
   }
   
+  // Wait for the DOM to be fully loaded
+document.addEventListener("DOMContentLoaded", function() {
+
+  let quantumTimeout; // Variable to store timeout ID
+
+  // Add event listener for mousemove to track pointer movement
+  document.addEventListener("mousemove", function(event) {
+    
+    // Clear previous timeout
+    clearTimeout(quantumTimeout);
+    
+    // Remove existing quantum element if it exists
+    removeQuantumElement();
+    
+    // Start a new timeout to show quantum after 5 seconds of inactivity
+    quantumTimeout = setTimeout(function() {
+      const quantum = createQuantumElement(event.clientX, event.clientY);
+      document.body.appendChild(quantum);
+
+      // Call your GFG_Fun function here after the timeout
+      GFG_Fun();
+    }, 5000);
+  });
+
+  // Function to create the quantum element at the specified coordinates
+  function createQuantumElement(x, y) {
+    const quantum = document.createElement("l-quantum");
+    quantum.setAttribute("size", "45");
+    quantum.setAttribute("speed", "1.75");
+    quantum.setAttribute("color", "white");
+    quantum.style.position = "absolute";
+    quantum.style.left = x + "px";
+    quantum.style.top = y + "px";
+    return quantum;
+  }
+
+  // Function to remove the quantum element
+  function removeQuantumElement() {
+    const existingQuantum = document.querySelector("l-quantum");
+    if (existingQuantum) {
+      existingQuantum.remove();
+    }
+  }
+
+  // Function GFG_Fun to add class and update text
+  function GFG_Fun() {
+    let elm = document.getElementById('GFG');
+    let body = document.body; // Use document.body to refer to the body element directly
+    
+    body.classList.add("newClass");
+    elm.innerHTML = "Cursor is removed from body!";
+  }
+
+});

@@ -3,7 +3,7 @@ function showArtistSearch() {
     const searchInputs = document.getElementById('searchInputs');
     searchInputs.innerHTML = `
       <input type="text" id="artistQuery" placeholder="Enter artist name...">
-      <button onclick="searchArtists()">Search</button>
+      <button onclick="searchArtists()"><div class="span">🔎</div></button>
     `;
   }
   
@@ -12,7 +12,7 @@ function showArtistSearch() {
     const searchInputs = document.getElementById('searchInputs');
     searchInputs.innerHTML = `
       <input type="text" id="trackQuery" placeholder="Enter track name...">
-      <button onclick="searchTracks()">Search</button>
+      <button onclick="searchTracks()"><div class="span">🔎</div></button>
     `;
   }
   

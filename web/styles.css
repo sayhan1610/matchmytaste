@@ -6,13 +6,36 @@ body {
   padding: 0;
 }
 
+
 .header {
-  background-color: #282828; /* Header background color */
-  padding: 10px 20px; /* Padding for header */
+  padding: 10px 10px;
   display: flex;
-  align-items: center; /* Center align items vertically */
+  align-items: center;
   height: 50px;
+  background-color: #111111;
+  background-image: linear-gradient(
+    32deg,
+    rgba(8, 8, 8, 0.74) 30px,
+    transparent
+  );
+  background-size: 50px 50px;
 }
+
+.header:hover {
+  animation: changeColors 1ms linear infinite;
+}
+
+@keyframes changeColors {
+  0% {
+    background-color: #111111;
+    background-position: 0 0;
+  }
+  100% {
+    background-color: #282828;
+    background-position: -1000000px -1000000px;
+  }
+}
+
 
 .logo {
   height: 80px; /* Adjust height of logo */

@@ -187,6 +187,7 @@ document.addEventListener("DOMContentLoaded", function() {
     quantum.style.position = "absolute";
     quantum.style.left = x + "px";
     quantum.style.top = y + "px";
+    quantum.style.zIndex = "1001";
     return quantum;
   }
 

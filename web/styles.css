@@ -36,7 +36,6 @@ body {
   }
 }
 
-
 .logo {
   height: 80px; /* Adjust height of logo */
   margin-right: 10px; /* Space between logo and title */
@@ -555,7 +554,7 @@ margin-top: auto;
   padding: 0.5em 1em; /* Adjust padding */
 }
 .spotify-button:hover {
-  animation: ani 8s linear infinite;
+  animation: ani 5s linear infinite;
   border: none;
 }
 
@@ -567,10 +566,6 @@ margin-top: auto;
   100% {
     background-position: 400%;
   }
-}
-.spotify-button:hover {
-  animation: ani 8s linear infinite;
-  border: none;
 }
 
 .spotify-button::before {

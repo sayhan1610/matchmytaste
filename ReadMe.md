@@ -6,7 +6,7 @@ MatchMyTaste API is a web service built with FastAPI to retrieve information abo
 
 ## Accessing the API
 
-You can use the MatchMyTaste API in two ways: directly from the provided URL or by setting it up locally.
+You can use the MatchMyTaste API in three ways: directly from the provided URL, by visiting the website, or by setting it up locally.
 
 ### 1. Use the Existing API
 
@@ -69,7 +69,11 @@ curl -X POST "https://matchmytaste.onrender.com/search_track" -H "Content-Type: 
 curl -X GET "https://matchmytaste.onrender.com/top_tracks_of_month"
 ```
 
-### 2. Use it Locally
+### 2. Use the Website
+
+Visit the MatchMyTaste website to easily access the API features through a user-friendly interface: [https://web-matchmytaste.onrender.com/](https://web-matchmytaste.onrender.com/).
+
+### 3. Use it Locally
 
 Follow these steps to set up and run the API on your local machine.
 
@@ -140,5 +144,3 @@ curl -X GET "http://127.0.0.1:8000/top_tracks_of_month"
 - **400 Bad Request**: Returned if the input query is missing or malformed.
 - **401 Unauthorized**: Returned if the Spotify API credentials are invalid.
 - **500 Internal Server Error**: Returned if there is an issue with the Spotify API or server.
-
-Feel free to add more detailed examples and explanations to suit your needs. This should make the README more user-friendly and informative!

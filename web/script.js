@@ -133,7 +133,7 @@ function createCard(name, subtitle, url) {
     <h3>${name}</h3>
     <p>${subtitle}</p>
     <button class="spotify-button" onclick="window.open('${url}', '_blank')">
-      <img src="https://static-00.iconduck.com/assets.00/spotify-icon-2048x2048-n3imyp8e.png" alt="Spotify Icon">
+      <img src="static/icons/spotify.png" alt="Spotify Icon">
       Listen on Spotify
     </button>
   `;

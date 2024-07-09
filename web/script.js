@@ -1,32 +1,48 @@
 function showArtistSearch() {
-    clearResults();
-    const searchInputs = document.getElementById('searchInputs');
-    searchInputs.innerHTML = `
-      <input type="text" id="artistQuery" placeholder="Enter artist name...">
-      <button onclick="searchArtists()"><div class="span">🔎</div></button>
-    `;
+  clearResults();
+  const searchInputs = document.getElementById('searchInputs');
+  searchInputs.innerHTML = `
+    <input type="text" id="artistQuery" placeholder="Enter artist name...">
+    <button onclick="searchArtists()"><div class="span">🔎</div></button>
+  `;
+}
+
+function showTrackSearch() {
+  clearResults();
+  const searchInputs = document.getElementById('searchInputs');
+  searchInputs.innerHTML = `
+    <input type="text" id="trackQuery" placeholder="Enter track name...">
+    <button onclick="searchTracks()"><div class="span">🔎</div></button>
+  `;
+}
+
+function showTopTracks() {
+  clearResults();
+  fetchTopTracks();
+}
+
+function showLoader() {
+  const loader = document.createElement('div');
+  loader.classList.add('loader');
+  document.body.appendChild(loader);
+
+  return new Promise((resolve) => {
+    const randomDelay = Math.random() * 2000 + 1000; // Random delay between 1000ms to 3000ms
+    setTimeout(() => {
+      loader.remove(); // Remove loader after random delay
+      resolve();
+    }, randomDelay);
+  });
+}
+
+function searchArtists() {
+  const artistQuery = document.getElementById('artistQuery').value.trim();
+  if (artistQuery === '') {
+    alert('Please enter an artist name');
+    return;
   }
-  
-  function showTrackSearch() {
-    clearResults();
-    const searchInputs = document.getElementById('searchInputs');
-    searchInputs.innerHTML = `
-      <input type="text" id="trackQuery" placeholder="Enter track name...">
-      <button onclick="searchTracks()"><div class="span">🔎</div></button>
-    `;
-  }
-  
-  function showTopTracks() {
-    clearResults();
-    fetchTopTracks();
-  }
-  
-  function searchArtists() {
-    const artistQuery = document.getElementById('artistQuery').value.trim();
-    if (artistQuery === '') {
-      alert('Please enter an artist name');
-      return;
-    }
+
+  showLoader().then(() => {
     fetch(`https://matchmytaste.onrender.com/search_artist`, {
       method: 'POST',
       headers: {
@@ -40,14 +56,17 @@ function showArtistSearch() {
       console.error('Error fetching data:', error);
       alert('Error fetching data. Please try again later.');
     });
+  });
+}
+
+function searchTracks() {
+  const trackQuery = document.getElementById('trackQuery').value.trim();
+  if (trackQuery === '') {
+    alert('Please enter a track name');
+    return;
   }
-  
-  function searchTracks() {
-    const trackQuery = document.getElementById('trackQuery').value.trim();
-    if (trackQuery === '') {
-      alert('Please enter a track name');
-      return;
-    }
+
+  showLoader().then(() => {
     fetch(`https://matchmytaste.onrender.com/search_track`, {
       method: 'POST',
       headers: {
@@ -61,10 +80,11 @@ function showArtistSearch() {
       console.error('Error fetching data:', error);
       alert('Error fetching data. Please try again later.');
     });
-  }
-  
-  function fetchTopTracks() {
-    clearResults();
+  });
+}
+
+function fetchTopTracks() {
+  showLoader().then(() => {
     fetch(`https://matchmytaste.onrender.com/top_tracks_of_month`, {
       method: 'GET',
       headers: {
@@ -77,73 +97,69 @@ function showArtistSearch() {
       console.error('Error fetching data:', error);
       alert('Error fetching data. Please try again later.');
     });
-  }
-  
-  function displayResults(data, type) {
-    const resultsContainer = document.getElementById('resultsContainer');
-    resultsContainer.innerHTML = '';
-  
-    switch (type) {
-      case 'artist':
-        data.forEach(item => {
-          const card = createCard(item.name, `Artist: ${item.name}`, item.url);
-          resultsContainer.appendChild(card);
-        });
-        break;
-      case 'track':
-        data.forEach(item => {
-          const card = createCard(item.name, `Track by ${item.artists}`, item.url);
-          resultsContainer.appendChild(card);
-        });
-        break;
-      case 'top_tracks':
-        data.forEach(track => {
-          const card = createCard(track.name, `Artist: ${track.artists}`, track.url);
-          resultsContainer.appendChild(card);
-        });
-        break;
-    }
-  }
-  
-  function createCard(name, subtitle, url) {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    card.innerHTML = `
-      <h3>${name}</h3>
-      <p>${subtitle}</p>
-      <button class="spotify-button" onclick="window.open('${url}', '_blank')">
-        <img src="https://static-00.iconduck.com/assets.00/spotify-icon-2048x2048-n3imyp8e.png" alt="Spotify Icon">
-        Listen on Spotify
-      </button>
-    `;
-    return card;
-  }
-  
-  
-  
-  
-  function clearResults() {
-    const resultsContainer = document.getElementById('resultsContainer');
-    resultsContainer.innerHTML = '';
-    const searchInputs = document.getElementById('searchInputs');
-    searchInputs.innerHTML = '';
-  }
-  
-  // Wait for the DOM to be fully loaded
-document.addEventListener("DOMContentLoaded", function() {
+  });
+}
 
+function displayResults(data, type) {
+  const resultsContainer = document.getElementById('resultsContainer');
+  resultsContainer.innerHTML = '';
+
+  switch (type) {
+    case 'artist':
+      data.forEach(item => {
+        const card = createCard(item.name, `Artist: ${item.name}`, item.url);
+        resultsContainer.appendChild(card);
+      });
+      break;
+    case 'track':
+      data.forEach(item => {
+        const card = createCard(item.name, `Track by ${item.artists}`, item.url);
+        resultsContainer.appendChild(card);
+      });
+      break;
+    case 'top_tracks':
+      data.forEach(track => {
+        const card = createCard(track.name, `Artist: ${track.artists}`, track.url);
+        resultsContainer.appendChild(card);
+      });
+      break;
+  }
+}
+
+function createCard(name, subtitle, url) {
+  const card = document.createElement('div');
+  card.classList.add('card');
+  card.innerHTML = `
+    <h3>${name}</h3>
+    <p>${subtitle}</p>
+    <button class="spotify-button" onclick="window.open('${url}', '_blank')">
+      <img src="https://static-00.iconduck.com/assets.00/spotify-icon-2048x2048-n3imyp8e.png" alt="Spotify Icon">
+      Listen on Spotify
+    </button>
+  `;
+  return card;
+}
+
+function clearResults() {
+  const resultsContainer = document.getElementById('resultsContainer');
+  resultsContainer.innerHTML = '';
+  const searchInputs = document.getElementById('searchInputs');
+  searchInputs.innerHTML = '';
+}
+
+// Wait for the DOM to be fully loaded
+document.addEventListener("DOMContentLoaded", function() {
   let quantumTimeout; // Variable to store timeout ID
   let cursorVisible = true; // Flag to track cursor visibility
 
   // Add event listener for mousemove to track pointer movement
   document.addEventListener("mousemove", function(event) {
-    
     // Clear previous timeout
     clearTimeout(quantumTimeout);
-    
+
     // Remove existing quantum element if it exists
     removeQuantumElement();
-    
+
     // Start a new timeout to show quantum after 5 seconds of inactivity
     quantumTimeout = setTimeout(function() {
       const quantum = createQuantumElement(event.clientX, event.clientY);
@@ -190,5 +206,4 @@ document.addEventListener("DOMContentLoaded", function() {
     body.classList.add("newClass");
     elm.innerHTML = "Cursor is removed from body!";
   }
-
 });

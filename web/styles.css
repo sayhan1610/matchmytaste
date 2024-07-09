@@ -292,6 +292,7 @@ body {
 
 
 .card {
+  overflow-wrap: break-word;
   display: flex;
   flex-direction: column;
   width: 190px;

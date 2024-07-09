@@ -420,6 +420,7 @@ margin-top: auto;
     transform: translate(0);
   }
 }
+
 .footer {
   background-color: #282828;
   color: #ffffff;
@@ -430,7 +431,28 @@ margin-top: auto;
   bottom: 0;
   width: 100%;
   z-index: 1000; /* Ensure the footer is on top of other elements */
+  --bg: radial-gradient(#000 5%, #0000 6%);
+  --size: 2rem;
+  background-image: 
+    var(--bg),
+    var(--bg);
+  background-position: 
+    0 0,
+    calc(var(--size) / 2) calc(var(--size) / 2);
+  background-size: var(--size) var(--size);
 }
+.footer:hover {
+  animation: rotateBg 5s linear infinite;
+}
+@keyframes rotateBg {
+  to {
+    background-position: 
+      var(--size) 0,
+      calc(var(--size) / 2 * -1) calc(var(--size) / 2);
+  }
+}
+
+
 
 .footer-content {
   display: flex;

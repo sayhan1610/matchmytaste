@@ -470,12 +470,24 @@ margin-top: auto;
   width: 20px;
   margin-left: 10px; /* Adjust spacing between icons */
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
 }
 
 .social-icon:hover {
-  transform: scale(1.2);
+  animation: rotateAndEnlarge 0.5s linear;
 }
+
+@keyframes rotateAndEnlarge {
+  0% {
+    transform: rotate(0deg) scale(0.75);
+  }
+  50% {
+    transform: rotate(180deg) scale(0.875);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
 .background {
   width: 100%;
   height: 100%;

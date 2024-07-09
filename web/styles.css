@@ -488,7 +488,7 @@ margin-top: auto;
     transform: rotate(360deg) scale(1);
   }
 }
-
+ 
 .ui-btn {
   --btn-hover-bg: rgb(0, 0, 0);
   --btn-transition: 0.3s;

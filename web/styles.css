@@ -871,3 +871,47 @@ margin-top: auto;
       radial-gradient(circle, #8b572a 48%, transparent 50%);
   }
 }
+
+
+/*media queries*/
+@media only screen and (max-width: 600px) {
+  /* Header */
+  .header {
+    size: 50%;
+  }
+
+  /* Search section */
+  .search-artist,
+  .search-track,
+  .top-track {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  /* Container */
+  .container {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  /* Cards */
+  .card {
+    width: 50%;
+  }
+
+  /* Disable pointer */
+  .newClass {
+    pointer-events: none;
+  }
+
+  /* Footer */
+  .footer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer p {
+    margin: 5px 0;
+  }
+}

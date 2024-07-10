@@ -304,6 +304,8 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border: 5px solid transparent;
   position: relative;
+  align-items: center;
+  text-align: center;
 }
 
 .card h3 {
@@ -741,6 +743,9 @@ margin-top: auto;
   display: inline-flex; /* Use flexbox to keep icon and text in one line */
   align-items: center; /* Center vertically */
   padding: 0.5em 1em; /* Adjust padding */
+  display: flex;
+  justify-content: center;
+  gap: 6px; /* Adjust the gap between the icon and text if needed */
 }
 .spotify-button:hover {
   animation: ani 5s linear infinite;
@@ -756,7 +761,12 @@ margin-top: auto;
     background-position: 400%;
   }
 }
-
+.logo-phone {
+  display: none;
+}
+.glitch-phone {
+  display: none;
+}
 .spotify-button::before {
   content: "";
   position: absolute;
@@ -874,44 +884,66 @@ margin-top: auto;
 
 
 /*media queries*/
-@media only screen and (max-width: 600px) {
-  /* Header */
+/* Remove header on phone view */
+@media (max-width: 768px) {
   .header {
-    size: 50%;
+      display: none;
   }
-
-  /* Search section */
-  .search-artist,
-  .search-track,
-  .top-track {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  /* Container */
+  /* Adjust the result container */
   .container {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-
-  /* Cards */
-  .card {
-    width: 50%;
-  }
-
-  /* Disable pointer */
-  .newClass {
-    pointer-events: none;
-  }
-
-  /* Footer */
-  .footer {
-    flex-direction: column;
+    max-width: 800px;
+    margin: 0px;
+    padding: 20px;
+    background-color: #282828;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
     justify-content: center;
     align-items: center;
   }
+  
+  .buttons-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .button {
+    --color: #00a97f;
+    padding: 0.6em 1.5em; /* Reduced padding to make buttons smaller */
+    margin: 0 10px; /* Added margin for extra space between buttons */
+    background-color: transparent;
+    border-radius: 0.3em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.5s;
+    font-weight: 400;
+    font-size: 15px; /* Reduced font size to make buttons smaller */
+    border: 1px solid;
+    font-family: inherit;
+    text-transform: uppercase;
+    color: var(--color);
+    z-index: 1;
+  }
 
-  .footer p {
-    margin: 5px 0;
+  /* Resize cards */
+  .card {
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+    text-align: center;
+  }
+  .button {
+      margin: 5px;
+    }
+  .spotify-button {
+      width: auto;
+      margin: 5px 0;
+      align-self: center;
+      text-align: center;
   }
 }

@@ -2,4 +2,4 @@ spotipy
 fastapi[all]
 uvicorn
 requests
-pydantic
+pydantic 

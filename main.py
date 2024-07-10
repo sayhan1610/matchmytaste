@@ -9,10 +9,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Initialize FastAPI app
+# Initialize FastAPI app 
 app = FastAPI()
-
-# CORS (Cross-Origin Resource Sharing) middleware configuration
+ 
+# CORS (Cross-Origin Resource Sharing) middleware configuration 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Allow all origins, modify this based on your requirements
@@ -21,11 +21,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Spotify credentials
+# Spotify credentials 
 SPOTIPY_CLIENT_ID = os.getenv('spoti_id')
 SPOTIPY_CLIENT_SECRET = os.getenv('spoti_token')
 
-# Authenticate with Spotify
+# Authenticate with Spotify 
 auth_manager = SpotifyClientCredentials(client_id=SPOTIPY_CLIENT_ID, client_secret=SPOTIPY_CLIENT_SECRET)
 sp = spotipy.Spotify(auth_manager=auth_manager)
 

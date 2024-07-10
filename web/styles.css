@@ -833,7 +833,7 @@ margin-top: auto;
 }
 .loader:before {
   content: "";
-  position: absolute;
+  position: absolute; 
   width: 140%;
   height: 125px;
   left: -20%;
@@ -841,7 +841,7 @@ margin-top: auto;
   background-image: radial-gradient(circle, #fff 48%, transparent 50%),
     radial-gradient(circle, #fff 48%, transparent 50%);
   background-repeat: no-repeat;
-  background-size: 65px 65px;
+  background-size: 65px 65px; 
   background-position: 0px 12px, 145px 12px;
   animation: earLift 3s linear infinite alternate;
 }
@@ -854,7 +854,7 @@ margin-top: auto;
 @keyframes faceLift {
   0% {
     transform: translateX(-60%);
-  }
+  } 
   100% {
     transform: translateX(-30%);
   }
@@ -867,7 +867,7 @@ margin-top: auto;
     transform: translateX(0px);
   }
 }
-@keyframes brownBear {
+@keyframes brownBear { 
   0% {
     background: #8b572a;
   }
@@ -883,7 +883,7 @@ margin-top: auto;
   100% {
     background-image: radial-gradient(circle, #8b572a 48%, transparent 50%),
       radial-gradient(circle, #8b572a 48%, transparent 50%);
-  }
+  } 
 }
 
 
@@ -896,27 +896,26 @@ margin-top: auto;
   .logo-phone {
       display: block;
       height: 80px;
-      margin-right: 10px;
+      margin-right: 10px; 
   }
 
-  /* Adjust the result container */
-  .container {
+.container {
+    width: calc(100% - 40px); /* 20px on each side */
     max-width: 800px;
-    margin: 0px;
+    margin: 0 auto; /* Centers the container horizontally */
     padding: 20px;
     background-color: #282828;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .buttons-container {
+}
+
+.buttons-container {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 20px;
+    margin-bottom: 20px; 
     text-align: center;
-  }
+}
+
   
   .button {
     --color: #00a97f;
@@ -939,14 +938,13 @@ margin-top: auto;
 
   /* Resize cards */
   .card {
-    width: 150;
-    margin-top: 10px;
-    margin-bottom: auto;
-    margin-left: auto;
-    margin-right: auto;
-    align-self: center;
+    width: calc(100% - 40px); /* Adjust the width as per your design */
+    max-width: 800px; /* Set a maximum width if needed */
+    padding: 20px;
+    margin: 10px auto; /* Center the card horizontally with top and bottom margin */
     text-align: center;
-  }
+}
+
   .button {
       margin: 5px;
     }
@@ -981,7 +979,7 @@ margin-top: auto;
   box-shadow: 0 0 10px #363636, inset 0 0 10px #363636;
 }
 
-.floating-button button:hover {
+.floating-button:hover {
   animation: pulse 0.5s linear;
 }
 

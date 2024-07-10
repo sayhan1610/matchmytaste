@@ -11,7 +11,7 @@ def search_artist(query):
     response = requests.post(url, json=payload)
     return response.json()
 
-# Function to search for similar tracks
+# Function to search for similar tracks  
 def search_track(query):
     endpoint = '/search_track'
     url = base_url + endpoint

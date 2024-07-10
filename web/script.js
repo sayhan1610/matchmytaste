@@ -164,7 +164,7 @@ function clearResults() {
 
 document.addEventListener("DOMContentLoaded", function() {
   // Check screen width to determine if script should be executed
-  if (window.innerWidth > 768) { // Change 768 to your desired breakpoint
+  if (window.innerWidth > 780) { // Change 768 to your desired breakpoint
     let quantumTimeout; // Variable to store timeout ID
     let cursorVisible = true; // Flag to track cursor visibility
 

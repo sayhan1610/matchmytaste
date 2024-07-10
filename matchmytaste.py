@@ -3,14 +3,14 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import json
 import datetime
 
-# Spotify credentials
+# Spotify credentials 
 SPOTIPY_CLIENT_ID = 'your_client_id'
 SPOTIPY_CLIENT_SECRET = 'your_client_secret'
-
-# Authenticate with Spotify
+ 
+# Authenticate with Spotify 
 auth_manager = SpotifyClientCredentials(client_id=SPOTIPY_CLIENT_ID, client_secret=SPOTIPY_CLIENT_SECRET)
 sp = spotipy.Spotify(auth_manager=auth_manager)
-
+ 
 def get_related_artists(artist_name, limit=50):
     # Fetch related artists for the given artist name
     results = sp.search(q=artist_name, type='artist', limit=1)

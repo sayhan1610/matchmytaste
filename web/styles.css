@@ -939,7 +939,7 @@ margin-top: auto;
 
   /* Resize cards */
   .card {
-    width: 300px;
+    width: 150;
     margin-top: 10px;
     margin-bottom: auto;
     margin-left: auto;

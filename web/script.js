@@ -59,6 +59,21 @@ function searchArtists() {
   });
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+  const expandBtn = document.getElementById('expandBtn');
+  const socialIcons = document.querySelector('.social-icons');
+
+  expandBtn.addEventListener('click', function() {
+    socialIcons.classList.toggle('show');
+    expandBtn.classList.toggle('active');
+    if (expandBtn.classList.contains('active')) {
+      expandBtn.innerHTML = '<span>Close</span>';
+    } else {
+      expandBtn.innerHTML = '<span>Social</span>';
+    }
+  });
+});
+
 function searchTracks() {
   const trackQuery = document.getElementById('trackQuery').value.trim();
   if (trackQuery === '') {
@@ -147,64 +162,66 @@ function clearResults() {
   searchInputs.innerHTML = '';
 }
 
-// Wait for the DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", function() {
-  let quantumTimeout; // Variable to store timeout ID
-  let cursorVisible = true; // Flag to track cursor visibility
+  // Check screen width to determine if script should be executed
+  if (window.innerWidth > 768) { // Change 768 to your desired breakpoint
+    let quantumTimeout; // Variable to store timeout ID
+    let cursorVisible = true; // Flag to track cursor visibility
 
-  // Add event listener for mousemove to track pointer movement
-  document.addEventListener("mousemove", function(event) {
-    // Clear previous timeout
-    clearTimeout(quantumTimeout);
+    // Add event listener for mousemove to track pointer movement
+    document.addEventListener("mousemove", function(event) {
+      // Clear previous timeout
+      clearTimeout(quantumTimeout);
 
-    // Remove existing quantum element if it exists
-    removeQuantumElement();
+      // Remove existing quantum element if it exists
+      removeQuantumElement();
 
-    // Start a new timeout to show quantum after 5 seconds of inactivity
-    quantumTimeout = setTimeout(function() {
-      const quantum = createQuantumElement(event.clientX, event.clientY);
-      document.body.appendChild(quantum);
-      cursorVisible = false; // Set flag to indicate cursor should be hidden
-      document.body.style.cursor = "none"; // Hide cursor
-    }, 5000);
-  });
+      // Start a new timeout to show quantum after 5 seconds of inactivity
+      quantumTimeout = setTimeout(function() {
+        const quantum = createQuantumElement(event.clientX, event.clientY);
+        document.body.appendChild(quantum);
+        cursorVisible = false; // Set flag to indicate cursor should be hidden
+        document.body.style.cursor = "none"; // Hide cursor
+      }, 5000);
+    });
 
-  // Add event listener to restore cursor visibility on mousemove
-  document.addEventListener("mousemove", function() {
-    if (!cursorVisible) {
-      cursorVisible = true; // Reset flag
-      document.body.style.cursor = "auto"; // Show cursor
-      removeQuantumElement(); // Remove quantum element if it exists
+    // Add event listener to restore cursor visibility on mousemove
+    document.addEventListener("mousemove", function() {
+      if (!cursorVisible) {
+        cursorVisible = true; // Reset flag
+        document.body.style.cursor = "auto"; // Show cursor
+        removeQuantumElement(); // Remove quantum element if it exists
+      }
+    });
+
+    // Function to create the quantum element at the specified coordinates
+    function createQuantumElement(x, y) {
+      const quantum = document.createElement("l-quantum");
+      quantum.setAttribute("size", "45");
+      quantum.setAttribute("speed", "1.75");
+      quantum.setAttribute("color", "white");
+      quantum.style.position = "absolute";
+      quantum.style.left = x + "px";
+      quantum.style.top = y + "px";
+      quantum.style.zIndex = "1001";
+      return quantum;
     }
-  });
 
-  // Function to create the quantum element at the specified coordinates
-  function createQuantumElement(x, y) {
-    const quantum = document.createElement("l-quantum");
-    quantum.setAttribute("size", "45");
-    quantum.setAttribute("speed", "1.75");
-    quantum.setAttribute("color", "white");
-    quantum.style.position = "absolute";
-    quantum.style.left = x + "px";
-    quantum.style.top = y + "px";
-    quantum.style.zIndex = "1001";
-    return quantum;
-  }
-
-  // Function to remove the quantum element
-  function removeQuantumElement() {
-    const existingQuantum = document.querySelector("l-quantum");
-    if (existingQuantum) {
-      existingQuantum.remove();
+    // Function to remove the quantum element
+    function removeQuantumElement() {
+      const existingQuantum = document.querySelector("l-quantum");
+      if (existingQuantum) {
+        existingQuantum.remove();
+      }
     }
-  }
 
-  // Function GFG_Fun to add class and update text
-  function GFG_Fun() {
-    let elm = document.getElementById('GFG');
-    let body = document.body; // Use document.body to refer to the body element directly
-    
-    body.classList.add("newClass");
-    elm.innerHTML = "Cursor is removed from body!";
+    // Function GFG_Fun to add class and update text
+    function GFG_Fun() {
+      let elm = document.getElementById('GFG');
+      let body = document.body; // Use document.body to refer to the body element directly
+
+      body.classList.add("newClass");
+      elm.innerHTML = "Cursor is removed from body!";
+    }
   }
 });

@@ -71,7 +71,7 @@ curl -X GET "https://matchmytaste.onrender.com/top_tracks_of_month"
 
 ### 2. Use the Website
 
-Visit the MatchMyTaste website to easily access the API features through a user-friendly interface: [https://web-matchmytaste.onrender.com/](https://web-matchmytaste.onrender.com/).
+Visit the MatchMyTaste website to easily access the API features through a user-friendly interface: [https://matchmytaste.netlify.app/](https://matchmytaste.netlify.app/).
 
 ### 3. Use it Locally
 
